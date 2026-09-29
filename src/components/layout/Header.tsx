@@ -39,7 +39,8 @@ export function Header() {
             alt="BBF logo"
             width={48}
             height={60}
-            className="h-12 w-auto"
+            className="h-12"
+            style={{ width: "auto" }}
             priority
           />
           <div className="hidden leading-tight sm:block">
