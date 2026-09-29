@@ -156,6 +156,19 @@ a {
   background: var(--bbf-orange-deep);
 }
 
+.btn-on-dark {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.24);
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+.btn-on-dark:hover {
+  border-color: #fff;
+  background: #fff;
+  color: var(--bbf-ink);
+}
+
 .btn-ghost {
   border: 1px solid var(--bbf-ink);
   color: var(--bbf-ink);

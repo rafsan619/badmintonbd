@@ -34,7 +34,7 @@ export function Hero() {
   );
 
   return (
-    <section ref={root} className="relative min-h-[100svh] overflow-hidden pt-28">
+    <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-bbf-ink">
       <div className="absolute inset-0">
         <div className="hero-media absolute inset-0">
           <Image
@@ -42,24 +42,24 @@ export function Hero() {
             alt="Badminton shuttlecock in play"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f4f2ef]/via-[#f4f2ef]/80 to-[#f4f2ef]/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#f4f2ef] via-transparent to-[#f4f2ef]/40" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,7,17,0.9)_0%,rgba(10,7,17,0.68)_55%,rgba(10,7,17,0.35)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,7,17,0.66)_0%,rgba(10,7,17,0.12)_38%,rgba(10,7,17,0.9)_100%)]" />
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1400px] flex-col justify-end px-4 pb-16 md:px-8 md:pb-20">
-        <p className="hero-brand eyebrow mb-5 text-bbf-orange">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-4 pb-16 pt-32 md:px-8 md:pb-20">
+        <p className="hero-brand eyebrow mb-5 w-fit rounded-sm border border-white/15 bg-black/60 px-4 py-2.5 !text-white shadow-lg backdrop-blur-md">
           Bangladesh Badminton Federation
         </p>
-        <h1 className="hero-line display max-w-4xl text-[clamp(2.8rem,8vw,6.5rem)] text-bbf-purple">
+        <h1 className="hero-line display max-w-4xl text-[clamp(2.8rem,8vw,6.5rem)] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.35)]">
           Where Bangladesh
           <br />
           meets the shuttle.
         </h1>
-        <p className="hero-copy mt-6 max-w-xl text-base leading-relaxed text-bbf-ink-soft md:text-lg">
+        <p className="hero-copy mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
           The national governing body for badminton — building athletes, clubs, and
           competitive pathways from grassroots courts to the world stage.
         </p>
@@ -67,7 +67,10 @@ export function Hero() {
           <Link href="/athletes" className="btn btn-primary">
             Athlete Pathways
           </Link>
-          <Link href="/events" className="btn btn-ghost">
+          <Link
+            href="/events"
+            className="btn btn-on-dark"
+          >
             Upcoming Events
           </Link>
         </div>
