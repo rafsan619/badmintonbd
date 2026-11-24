@@ -1,78 +1,97 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
+import { Timeline } from "@/components/about/Timeline";
 import { images } from "@/lib/images";
+import { affiliations, honours } from "@/lib/org";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About BBF",
+  description: "The Bangladesh Badminton Federation is the national governing body for badminton in Bangladesh.",
 };
+
+const priorities = [
+  { t: "Grow participation", b: "More clubs, school programmes and come-and-play sessions in every division." },
+  { t: "Build performance", b: "A clear pathway from district trials to the national squad, backed by qualified coaches." },
+  { t: "Run fair competition", b: "A national calendar, transparent rankings and trained technical officials." },
+  { t: "Protect the sport", b: "Clean sport, safe environments for children and adults at risk, and good governance." },
+];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About BBF"
-        title="Governance, integrity, and national standards."
-        description="The Bangladesh Badminton Federation is the recognized national governing body for badminton — responsible for competition frameworks, athlete development, and representation in international sport."
+        title="About the federation"
+        intro="The Bangladesh Badminton Federation is the national governing body for badminton, responsible for competition, development and representation."
+        jump={[
+          { href: "#purpose", label: "Our purpose" },
+          { href: "#history", label: "History" },
+          { href: "#honours", label: "Honours" },
+          { href: "#affiliations", label: "Affiliations" },
+        ]}
       />
 
-      <section className="section-pad pt-0">
-        <div className="mx-auto grid max-w-[1400px] gap-8 md:grid-cols-2 md:items-center">
-          <Reveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem]">
-              <Image
-                src={images.about}
-                alt="Athletes competing"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+      <section id="purpose" className="section">
+        <div className="wrap grid items-center gap-12 lg:grid-cols-2">
+          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-xl">
+            <Image src={images.court} alt="Players during a doubles session" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="eyebrow mb-3">Mission</p>
-            <h2 className="display text-[clamp(1.8rem,3.5vw,2.8rem)] text-bbf-purple">
-              Grow the game. Raise the standard.
-            </h2>
-            <p className="mt-4 text-bbf-ink-soft leading-relaxed">
-              We foster participation across districts, protect clean sport, and prepare
-              Bangladesh athletes for regional and Olympic pathways. Our work spans junior
-              circuits, senior ranking, coaching education, and event hosting.
+          <Reveal>
+            <h2 className="h-section">Badminton for everyone in Bangladesh, and Bangladesh on the world stage</h2>
+            <p className="lede mt-5">
+              We set the rules for competition, run the national calendar and rankings, select national
+              squads, educate coaches and officials, and support clubs and associations in all eight divisions.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-bbf-ink-soft">
-              <li>— National championships & ranking structure</li>
-              <li>— Athlete selection & high-performance support</li>
-              <li>— Coach / official education</li>
-              <li>— Club affiliation & safe sport policies</li>
-            </ul>
+            <Link href="/governance" className="btn btn-outline mt-8">How we’re governed</Link>
           </Reveal>
         </div>
       </section>
 
-      <section className="section-pad pt-0">
-        <div className="mx-auto max-w-[1400px] grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "Board & leadership",
-              body: "Elected officers and technical committees guiding strategy and compliance.",
-            },
-            {
-              title: "Policies",
-              body: "Safeguarding, eligibility, anti-doping alignment, and competition regulations.",
-            },
-            {
-              title: "International",
-              body: "Engagement with BWF, BAC, and Olympic structures for Bangladesh badminton.",
-            },
-          ].map((card, i) => (
-            <Reveal key={card.title} delay={i * 0.08}>
-              <div className="rounded-2xl border border-bbf-line bg-bbf-white p-7 h-full">
-                <h3 className="text-xl text-bbf-purple">{card.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-bbf-ink-soft">{card.body}</p>
+      <section className="section bg-white">
+        <div className="wrap">
+          <SectionHeader title="Our four priorities" intro="From the federation’s strategic plan." />
+          <Reveal stagger={0.08} className="grid gap-px overflow-hidden rounded-xl bg-line md:grid-cols-2 lg:grid-cols-4">
+            {priorities.map((p) => (
+              <div key={p.t} className="bg-white p-7">
+                <h3 className="h-card">{p.t}</h3>
+                <p className="mt-2 text-muted">{p.b}</p>
               </div>
-            </Reveal>
-          ))}
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <Timeline />
+
+      <section id="honours" className="section">
+        <div className="wrap">
+          <SectionHeader title="Honours" intro="Recent national champions. A full roll of honour is in preparation." link={{ href: "/results", label: "Latest results" }} />
+          <Reveal as="ul" stagger={0.07} className="divide-y divide-line border-y border-line">
+            {honours.map((h) => (
+              <li key={h.year + h.detail} className="grid gap-2 py-5 md:grid-cols-[120px_240px_1fr] md:items-baseline">
+                <span className="font-display text-4xl font-black text-violet">{h.year}</span>
+                <span className="font-semibold">{h.title}</span>
+                <span className="text-muted">{h.detail}</span>
+              </li>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="affiliations" className="section bg-paper-2">
+        <div className="wrap">
+          <SectionHeader title="Affiliations" />
+          <Reveal stagger={0.08} className="grid gap-4 md:grid-cols-3">
+            {affiliations.map((a) => (
+              <div key={a.short} className="rounded-xl bg-white p-6">
+                <p className="font-display text-5xl font-black text-violet">{a.short}</p>
+                <p className="mt-2 font-semibold">{a.name}</p>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
     </>
