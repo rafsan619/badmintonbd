@@ -12,6 +12,10 @@ const display = Big_Shoulders({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800", "900"],
+  // next/font has no metrics for Big Shoulders, so skip the auto-adjusted fallback
+  // and fall back to a condensed system face instead.
+  adjustFontFallback: false,
+  fallback: ["Arial Narrow", "Roboto Condensed", "sans-serif"],
 });
 
 const body = Hind_Siliguri({
